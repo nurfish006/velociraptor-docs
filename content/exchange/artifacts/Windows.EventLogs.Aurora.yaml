@@ -1,14 +1,19 @@
-name: Windows.EventLogs.Aurora
+name: Windows.EventLogs.AuroraAgent
 author: Wes Lambert - @therealwlambert
 description: |
-   This artifact is a wrapper around the Windows.EventLogs.EvtxHunter artifact. It searches the Windows Application event log for logs being written by Nextron System's Aurora/Aurora Lite ('AuroraAgent' provider).
+  Detects Aurora Agent activity by searching Windows Application event logs for entries 
+  from Nextron Systems' Aurora/Aurora Lite EDR solution (AuroraAgent provider).
+
+  This artifact wraps Windows.EventLogs.EvtxHunter to specifically target Aurora Agent
+  event log entries, which can indicate the presence of Nextron's security monitoring
+  software on the endpoint.
 
 reference:
    - https://www.nextron-systems.com/aurora/
 
 parameters:
    - name: MessageRegex
-     description: "Message regex to enable filtering on message"
+     description: "Regex pattern to filter event messages"
      default: .
    - name: TargetGlob
      default: '%SystemRoot%\System32\Winevt\Logs\Application.evtx'
